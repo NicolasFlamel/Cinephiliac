@@ -7,6 +7,7 @@ I WANT a way to test my movie knowledge
 SO THAT I can impress my friends and track my score
 
 ## Wireframe
+-Link: https://www.figma.com/file/JR9l3bHdpcIXFixLzLzIZr/Cinephiliac?node-id=0%3A1
 
 ## APIs
 - OMDb for movie data
