@@ -1,13 +1,14 @@
-.genre-options, .decade-options {
-    max-width: 500px;
-}
 h1 {
     text-align: center;
 }
+
 header {
-    text-align: right;
-}
-h1, header {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 15px 12px 15px;
     background: rgb(11,11,11);
     background: linear-gradient(90deg, rgba(11,11,11,1) 0%, rgba(228,219,18,1) 35%, rgba(235,98,12,1) 100%);
+}
+button {
+    height: 30px;
 }
