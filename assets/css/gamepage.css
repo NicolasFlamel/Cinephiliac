@@ -1,0 +1,7 @@
+img {
+    height: auto;
+    width: 20%;
+}
+.game {
+    display: flex;
+}
