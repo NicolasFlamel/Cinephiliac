@@ -5,10 +5,10 @@ var userGenreChoice = "action";
 function getMovieList(genre) {
     var urlImdb
     if (genre == null) {
-        urlImdb = `https://imdb-api.com/API/AdvancedSearch/k_no5d2zsg/?title_type=feature&count=250&groups=top_1000&countries=us&sort=sort=boxoffice_gross_us,desc`;
+        urlImdb = `https://imdb-api.com/API/AdvancedSearch/${config.imdbApiKey}/?title_type=feature&count=250&groups=top_1000&countries=us&sort=sort=boxoffice_gross_us,desc`;
     }
     else {
-        urlImdb = `https://imdb-api.com/API/AdvancedSearch/k_no5d2zsg/?title_type=feature&genres=${genre}&count=250&groups=top_1000&countries=us&sort=sort=boxoffice_gross_us,desc`;
+        urlImdb = `https://imdb-api.com/API/AdvancedSearch/${config.imdbApiKey}/?title_type=feature&genres=${genre}&count=250&groups=top_1000&countries=us&sort=sort=boxoffice_gross_us,desc`;
     }
 
     fetch(urlImdb)
@@ -26,18 +26,23 @@ function movieTitles(data) {
 
     var movie1 = randomMovieName();
     var movie2 = randomMovieName();
-    createMovieObj(movie1, 'box-office');
-    createMovieObj(movie2, 'box-office');
+    createMovieObj(movie1, 'box office');
+    createMovieObj(movie2, 'box office');
 }
 
 function randomMovieName() {
-    var title = movieList[Math.floor(Math.random() * (movieList.length - 1))]
+    var randomIndex = Math.floor(Math.random() * (movieList.length - 1))
+    var title = movieList[randomIndex]
+
+    movieList.splice(randomIndex, 1);
+
     return title
 }
 
 function createMovieObj(movieTitle, type) {
     var movie = {
-        name: movieTitle
+        name: movieTitle,
+        type: type
     }
 
     getMovieData(movieTitle)
@@ -45,10 +50,10 @@ function createMovieObj(movieTitle, type) {
             return response.json();
         })
         .then(function (data) {
-            if (type == 'box-office') {
+            if (movie.type == 'box office') {
                 movie['movieData'] = data.BoxOffice;
                 movie['poster'] = data.Poster;
-            } else if (type == 'budget') {
+            } else if (movie.type == 'budget') {
                 movie['movieData'] = data.budget;
                 movie['poster'] = data.Poster;
             } else {
@@ -56,10 +61,8 @@ function createMovieObj(movieTitle, type) {
                 movie['poster'] = data.Poster;
             }
             //render movie
-            loadMovies(movie);
+            loadMovie(movie);
         })
-
-    console.log(movie);
 }
 
 function getMovieData(title) {
@@ -70,29 +73,29 @@ function getMovieData(title) {
 
 }
 
-function loadMovies(movie) {
+// moves movie in 2nd slot to 1st and loads passed in movie to 2nd slot
+function loadMovie(secondMovie) {
     var movieCardEl = document.querySelectorAll('.movie-card');
+    var questionEl = document.querySelector('#question');
+    var firstMovie = JSON.parse(localStorage.getItem('movie-2'));
+
+    localStorage.setItem('movie-1', JSON.stringify(secondMovie))
     
-    moveMovie(movie);
-    localStorage.setItem('movie-2', JSON.stringify(movie))
+    if(firstMovie != null){
+        movieCardEl[0].children[0].textContent = `Box Office: ${firstMovie.movieData}`;
+        movieCardEl[0].children[1].src = firstMovie.poster;
+        movieCardEl[0].children[2].textContent = firstMovie.name;
 
-    movieCardEl[1].children[0].textContent = `Box Office: ???`;
-    movieCardEl[1].children[1].src = movie.poster;
-    movieCardEl[1].children[2].textContent = movie.name;
-}
-
-function moveMovie() {
-    var movieCardEl = document.querySelectorAll('.movie-card');
-    var movie = JSON.parse(localStorage.getItem('movie-2'));
-
-    localStorage.setItem('movie-1', JSON.stringify(movie))
-    if(movie != null){
-        movieCardEl[0].children[0].textContent = `Box Office: ${movie.movieData}`;
-        movieCardEl[0].children[1].src = movie.poster;
-        movieCardEl[0].children[2].textContent = movie.name;
+        questionEl.textContent = `${secondMovie.name} has a higher or lower ${secondMovie.type} amount than ${firstMovie.name}?`
     }
 
+    localStorage.setItem('movie-2', JSON.stringify(secondMovie))
+
+    movieCardEl[1].children[0].textContent = `Box Office: ???`;
+    movieCardEl[1].children[1].src = secondMovie.poster;
+    movieCardEl[1].children[2].textContent = secondMovie.name;
 }
+
 
 // code handling user input when comparing both movies (includes loading data)
 
@@ -100,4 +103,23 @@ function moveMovie() {
 
 // if continue move 2nd movie over and grab new movie to compare to
 
-getMovieList(userGenreChoice)
+//goes back to main page
+function goBack(event){
+    var url = window.location.href
+
+    if(window.location.protocol == 'http:'){
+        window.location = '/index.html'
+    }else if (window.location.protocol == 'file:'){
+        var index = url.indexOf('/gamepage')
+        url = url.slice(0, index);
+        url += '/index.html'
+        window.location.replace(url);
+    }else{
+        console.log('failed');
+    }
+}
+
+
+//getMovieList(userGenreChoice)
+
+document.getElementById('back-btn').addEventListener('click', goBack)
