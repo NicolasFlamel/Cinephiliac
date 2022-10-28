@@ -1,5 +1,5 @@
 // grab filter options
-var urlOmdb = "http://www.omdbapi.com/?i=tt3896198&apikey=adb3ba12";
+
 var movieList = [];
 var userGenreChoice = "action";
 var dateRange = ["2010", "2020"];
@@ -24,42 +24,67 @@ function getMovieList(genre, dateRange) {
             movieTitles(data)
         })
 }
-getMovieList(userGenreChoice, dateRange)
 function movieTitles(data) {
-   for {
-    data.results[0].title
-   }
+    for (var i = 0; i < data.results.length; i++) {
+        movieList.push(data.results[i].title)
+    }
+    var movie1 = randomMovie()
+    var movie2 = randomMovie()
+    createMovie(movie1)
+    createMovie(movie2)
 }
 
-
-
+function randomMovie() {
+    var title = movieList[Math.floor(Math.random() * (movieList.length - 1))]
+    return title
+}
+getMovieList(userGenreChoice, dateRange)
 
 // use api to grab list of movies depending on filter
 
 // choose 2 random movies from list
 
 // use 2nd api to grab movie info
+function createMovie(movieTitle) {
+    var movie = {
+        name: movieTitle
+    }
+    getMovieData(movie)
+}
+
+function getMovieData(movieObj) {
+    var title = movieObj.name
+    title = title.replaceAll(" ","+")
+    console.log(title)
+    var urlOmdb = `http://www.omdbapi.com/?t=${title}&apikey=adb3ba12`;
+    // titles with spaces not working
+    fetch(urlOmdb)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data)
+        })
+       
+}
+
+
+
+
+
+
+
+
 
 // temp variables
-var movieList = ['Dune', 'Memory'];
-var movieInfo = ['$108,327,830', '$7,329,043'];
+// var movieList = ['Dune', 'Memory'];
+// var movieInfo = ['$108,327,830', '$7,329,043'];
 
-var moviePoster = [
-    'https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg',
-    'https://m.media-amazon.com/images/M/MV5BOGI5N2FhNzktZjZlNi00MmRjLWE1MmUtNjRlNzQyOGMzYjNhXkEyXkFqcGdeQXVyMDA4NzMyOA@@._V1_SX300.jpg'
-];
+// var moviePoster = [
+//     'https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg',
+//     'https://m.media-amazon.com/images/M/MV5BOGI5N2FhNzktZjZlNi00MmRjLWE1MmUtNjRlNzQyOGMzYjNhXkEyXkFqcGdeQXVyMDA4NzMyOA@@._V1_SX300.jpg'
+// ];
 
-function firstAPI() {
-    //grabs movie list depending on filters
-}
-
-function randomMovie() {
-    //function returns index of a random movie and removes from list
-}
-
-function getMovieInfo(index) {
-    //gets info on movie in index that was passed in
-}
 
 // load movie data onto page
 
