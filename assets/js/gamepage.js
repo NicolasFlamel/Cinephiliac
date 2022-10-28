@@ -1,104 +1,97 @@
 // grab filter options
-
 var movieList = [];
 var userGenreChoice = "action";
-var dateRange = ["2010", "2020"];
 
-function getMovieList(genre, dateRange) {
+function getMovieList(genre) {
     var urlImdb
-    var dateString = `${dateRange[0]}-01-01,${dateRange[1]}-01-01`
     if (genre == null) {
-        urlImdb = `https://imdb-api.com/API/AdvancedSearch/k_no5d2zsg/?title_type=feature&release_date=${dateString}&count=250&sort=moviemeter,desc`;
+        urlImdb = `https://imdb-api.com/API/AdvancedSearch/k_no5d2zsg/?title_type=feature&count=250&groups=top_1000&countries=us&sort=sort=boxoffice_gross_us,desc`;
     }
     else {
-        urlImdb = `https://imdb-api.com/API/AdvancedSearch/k_no5d2zsg/?title_type=feature&release_date=${dateString}&genres=${genre}&count=250&sort=moviemeter,desc`;
+        urlImdb = `https://imdb-api.com/API/AdvancedSearch/k_no5d2zsg/?title_type=feature&genres=${genre}&count=250&groups=top_1000&countries=us&sort=sort=boxoffice_gross_us,desc`;
     }
-
 
     fetch(urlImdb)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data)
             movieTitles(data)
         })
 }
 function movieTitles(data) {
     for (var i = 0; i < data.results.length; i++) {
-        movieList.push(data.results[i].title)
+        movieList.push(data.results[i].title);
     }
-    var movie1 = randomMovie()
-    var movie2 = randomMovie()
-    createMovie(movie1)
-    createMovie(movie2)
+
+    var movie1 = randomMovieName();
+    var movie2 = randomMovieName();
+    createMovieObj(movie1, 'box-office');
+    createMovieObj(movie2, 'box-office');
 }
 
-function randomMovie() {
+function randomMovieName() {
     var title = movieList[Math.floor(Math.random() * (movieList.length - 1))]
     return title
 }
-getMovieList(userGenreChoice, dateRange)
 
-// use api to grab list of movies depending on filter
-
-// choose 2 random movies from list
-
-// use 2nd api to grab movie info
-function createMovie(movieTitle) {
+function createMovieObj(movieTitle, type) {
     var movie = {
         name: movieTitle
     }
-    getMovieData(movie)
-}
 
-function getMovieData(movieObj) {
-    var title = movieObj.name
-    title = title.replaceAll(" ","+")
-    console.log(title)
-    var urlOmdb = `http://www.omdbapi.com/?t=${title}&apikey=adb3ba12`;
-    // titles with spaces not working
-    fetch(urlOmdb)
+    getMovieData(movieTitle)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data)
+            if (type == 'box-office') {
+                movie['movieData'] = data.BoxOffice;
+                movie['poster'] = data.Poster;
+            } else if (type == 'budget') {
+                movie['movieData'] = data.budget;
+                movie['poster'] = data.Poster;
+            } else {
+                movie['movieData'] = data.ratings;
+                movie['poster'] = data.Poster;
+            }
+            //render movie
+            loadMovies(movie);
         })
-       
+
+    console.log(movie);
 }
 
+function getMovieData(title) {
+    title = title.replaceAll(" ", "+")
+    var urlOmdb = `http://www.omdbapi.com/?t=${title}&apikey=adb3ba12`;
 
+    return fetch(urlOmdb);
 
+}
 
-
-
-
-
-
-// temp variables
-// var movieList = ['Dune', 'Memory'];
-// var movieInfo = ['$108,327,830', '$7,329,043'];
-
-// var moviePoster = [
-//     'https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg',
-//     'https://m.media-amazon.com/images/M/MV5BOGI5N2FhNzktZjZlNi00MmRjLWE1MmUtNjRlNzQyOGMzYjNhXkEyXkFqcGdeQXVyMDA4NzMyOA@@._V1_SX300.jpg'
-// ];
-
-
-// load movie data onto page
-
-//call function using array of index
-loadGameOptionInfo([0, 1]);
-
-function loadGameOptionInfo(indexArray) {
+function loadMovies(movie) {
     var movieCardEl = document.querySelectorAll('.movie-card');
+    
+    moveMovie(movie);
+    localStorage.setItem('movie-2', JSON.stringify(movie))
 
-    for (var i = 0; i < indexArray.length; i++) {
-        movieCardEl[i].children[0].textContent = `Box Office: ${movieList[indexArray[i]]}`;
-        movieCardEl[i].children[1].src = moviePoster[indexArray[i]];
-        movieCardEl[i].children[2].textContent = movieInfo[indexArray[i]];
+    movieCardEl[1].children[0].textContent = `Box Office: ???`;
+    movieCardEl[1].children[1].src = movie.poster;
+    movieCardEl[1].children[2].textContent = movie.name;
+}
+
+function moveMovie() {
+    var movieCardEl = document.querySelectorAll('.movie-card');
+    var movie = JSON.parse(localStorage.getItem('movie-2'));
+
+    localStorage.setItem('movie-1', JSON.stringify(movie))
+    if(movie != null){
+        movieCardEl[0].children[0].textContent = `Box Office: ${movie.movieData}`;
+        movieCardEl[0].children[1].src = movie.poster;
+        movieCardEl[0].children[2].textContent = movie.name;
     }
+
 }
 
 // code handling user input when comparing both movies (includes loading data)
@@ -107,3 +100,4 @@ function loadGameOptionInfo(indexArray) {
 
 // if continue move 2nd movie over and grab new movie to compare to
 
+getMovieList(userGenreChoice)
