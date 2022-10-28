@@ -119,45 +119,42 @@ function compareAnswers(event) {
     var movieOneData = JSON.parse(localStorage.getItem('movie-1'));
     var movieTwoData = JSON.parse(localStorage.getItem('movie-2'));
 
-    movieOneData = Number(movieOneData.movieData.replaceAll(/[$,]/g,''));
-    movieTwoData = Number(movieTwoData.movieData.replaceAll(/[$,]/g,''));
+    movieOneData = Number(movieOneData.movieData.replaceAll(/[$,]/g, ''));
+    movieTwoData = Number(movieTwoData.movieData.replaceAll(/[$,]/g, ''));
 
-    console.log(typeof(movieOneData));
-    console.log(typeof(movieTwoData));
+    console.log(typeof (movieOneData));
+    console.log(typeof (movieTwoData));
 
-    if (movieOneData < movieTwoData && userAnswer == 'higher') {
-        //correct, continue game
-        score++;
-        console.log('ping 1');
-        createMovieObj();
-    } else if (movieOneData > movieTwoData && userAnswer == 'higher') {
-        //incorrect, end game
-        console.log('ping 2');
-        gameOver();
-    } else if (movieOneData < movieTwoData && userAnswer == 'lower') {
-        //incorrect, end game
-        console.log('ping 3');
-        gameOver();
-    } else if (movieOneData > movieTwoData && userAnswer == 'lower') {
-        //correct, continue game
-        console.log('ping 4');
+    if (
+        movieOneData < movieTwoData && userAnswer == 'higher' ||
+        movieOneData > movieTwoData && userAnswer == 'lower') {
         score++;
         createMovieObj();
+    } else if (
+        movieOneData > movieTwoData && userAnswer == 'higher' ||
+        movieOneData < movieTwoData && userAnswer == 'lower') {
+        gameOver();
     } else {
-        console.log('failed 134');
+        console.log('failed ln 138');
     }
 }
 
+// goes to gameover screen
 function gameOver() {
     // goes to gameover page
+    var url = window.location.href
+
+    if (window.location.protocol == 'http:') {
+        window.location = `/gameover.html`
+    } else if (window.location.protocol == 'file:') {
+        var index = url.indexOf('/gamepage.html')
+        url = url.slice(0, index);
+        url += `/gameover.html`
+        window.location.replace(url);
+    } else {
+        console.log('failed');
+    }
 }
-
-
-// code handling user input when comparing both movies (includes loading data)
-
-// check input if correct continue or false stop game then load game over/store score
-
-// if continue move 2nd movie over and grab new movie to compare to
 
 //goes back to main page
 function goBack(event) {
