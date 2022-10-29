@@ -90,8 +90,8 @@ function createMovieObj() {
             } else if (gameType == 'budget' && data.budget != 'N/A') {
                 movie['movieData'] = data.budget;
                 movie['poster'] = data.Poster;
-            } else if (gameType == 'ratings' && data.ratings != 'N/A') {
-                movie['movieData'] = data.ratings;
+            } else if (gameType == 'rating' && data.imdbRating != 'N/A') {
+                movie['movieData'] = data.imdbRating;
                 movie['poster'] = data.Poster;
             } else {
                 createMovieObj(movie.type);
@@ -122,22 +122,23 @@ function getMovieData(title) {
 function loadMovie(secondMovie) {
     var movieCardEl = document.querySelectorAll('.movie-card');
     var questionEl = document.querySelector('#question');
+    var tempGameType = formatGameType(gameType);
 
     var firstMovie = JSON.parse(localStorage.getItem('movie-2'));
 
     localStorage.setItem('movie-1', JSON.stringify(firstMovie))
 
     if (firstMovie != null) {
-        movieCardEl[0].children[0].textContent = `Box Office: ${firstMovie.movieData}`;
+        movieCardEl[0].children[0].textContent = `${tempGameType}: ${firstMovie.movieData}`;
         movieCardEl[0].children[1].src = firstMovie.poster;
         movieCardEl[0].children[2].textContent = firstMovie.name;
 
-        questionEl.textContent = `${secondMovie.name} has a higher or lower ${gameType} amount than ${firstMovie.name}?`
+        questionEl.textContent = `${secondMovie.name} has a higher or lower ${tempGameType} amount than ${firstMovie.name}?`
     }
 
     localStorage.setItem('movie-2', JSON.stringify(secondMovie))
 
-    movieCardEl[1].children[0].textContent = `Box Office: ???`;
+    movieCardEl[1].children[0].textContent = `${tempGameType}: ???`;
     movieCardEl[1].children[1].src = secondMovie.poster;
     movieCardEl[1].children[2].textContent = secondMovie.name;
 }
@@ -162,6 +163,12 @@ function compareAnswers(event) {
     } else {
         console.log('failed ln 138');
     }
+}
+
+function formatGameType(game) {
+    game = game.replaceAll('_', ' ')
+    game = game.charAt(0).toUpperCase() + game.slice(1)
+    return game
 }
 
 // goes to gameover screen
