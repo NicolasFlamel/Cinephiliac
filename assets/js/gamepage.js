@@ -5,10 +5,10 @@ var score;
 
 function onLoad() {
     //somehow grab genre
-    var genre;
-
+    var genre = getGenre();
+    
     score = 0;
-    gameType = 'box office'
+    gameType = getGameType();
     movieList = JSON.parse(localStorage.getItem(`${genre}`)) || [];
 
     if (movieList.length == 0) {
@@ -19,10 +19,32 @@ function onLoad() {
 
 }
 
+function getGameType() {
+    var tempGameType;
+    var url = window.location.href;
+    var firstIndex = url.indexOf('game=') + 5;
+    var lastIndex = url.indexOf('&')
+
+    tempGameType = url.slice(firstIndex, lastIndex)
+
+    return tempGameType
+}
+
+function getGenre() {
+    var tempGenre;
+    var url = window.location.href;
+    var firstIndex = url.indexOf('genre=') + 6;
+    var lastIndex = window.location.href.length;
+
+    tempGenre = url.slice(firstIndex, lastIndex);
+
+    return tempGenre;
+}
+
 function getMovieList(genre) {
     var urlImdb
 
-    if (genre == null) {
+    if (genre == 'all_genres') {
         urlImdb = `https://imdb-api.com/API/AdvancedSearch/${config.imdbApiKey}/?title_type=feature&count=250&groups=top_1000&countries=us&sort=boxoffice_gross_us,desc`;
     }
     else {
@@ -36,6 +58,11 @@ function getMovieList(genre) {
         .then(function (data) {
             for (var i = 0; i < data.results.length; i++) {
                 movieList.push(data.results[i].title);
+            }
+            if (genre != null) {
+                localStorage.setItem(`${genre}`, JSON.stringify(movieList))
+            }else{
+                localStorage.setItem(`all`, JSON.stringify(movieList))
             }
             generateTwoMovies();
         })
@@ -56,7 +83,7 @@ function createMovieObj() {
             return response.json();
         })
         .then(function (data) {
-            if (gameType == 'box office' && data.BoxOffice != 'N/A') {
+            if (gameType == 'box_office' && data.BoxOffice != 'N/A') {
                 movie['movieData'] = data.BoxOffice;
                 movie['poster'] = data.Poster;
             } else if (gameType == 'budget' && data.budget != 'N/A') {
@@ -121,9 +148,6 @@ function compareAnswers(event) {
 
     movieOneData = Number(movieOneData.movieData.replaceAll(/[$,]/g, ''));
     movieTwoData = Number(movieTwoData.movieData.replaceAll(/[$,]/g, ''));
-
-    console.log(typeof (movieOneData));
-    console.log(typeof (movieTwoData));
 
     if (
         movieOneData < movieTwoData && userAnswer == 'higher' ||
