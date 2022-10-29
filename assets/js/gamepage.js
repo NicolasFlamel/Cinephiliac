@@ -167,6 +167,7 @@ function compareAnswers(event) {
 // goes to gameover screen
 function gameOver() {
     var url = window.location.href
+    var index = url.indexOf('/gamepage.html');
     var results = {
         finalScore: score,
         genreUsed: genre,
@@ -175,16 +176,8 @@ function gameOver() {
 
     localStorage.setItem('results', JSON.stringify(results))
 
-    if (window.location.protocol == 'http:') {
-        window.location = `/gameover.html`
-    } else if (window.location.protocol == 'file:') {
-        var index = url.indexOf('/gamepage.html')
-        url = url.slice(0, index);
-        url += `/gameover.html`
-        window.location.replace(url);
-    } else {
-        console.log('failed');
-    }
+    url = url.slice(0, index) + '/gameover.html'
+    window.location.replace(url);
 }
 
 //goes back to main page

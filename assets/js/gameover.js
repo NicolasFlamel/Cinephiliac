@@ -15,18 +15,11 @@ function onLoad() {
 
 //goes back to main page
 function goHome(event) {
-    var url = window.location.href
+    var url = window.location.href;
+    var index = url.indexOf('/gameover.html');
 
-    if (window.location.protocol == 'http:') {
-        window.location = '/index.html'
-    } else if (window.location.protocol == 'file:') {
-        var index = url.indexOf('/gameover.html')
-        url = url.slice(0, index);
-        url += '/index.html'
-        window.location.replace(url);
-    } else {
-        console.log('failed');
-    }
+    url = url.slice(0, index) + '/index.html';
+    window.location.replace(url);
 }
 
 function navigateToScoreboard(event) {
