@@ -1,12 +1,13 @@
 // grab filter options
-var movieList;
-var gameType;
+var genre;
 var score;
+var gameType;
+var movieList;
 
 function onLoad() {
     //somehow grab genre
-    var genre = getGenre();
-    
+
+    genre = getGenre();
     score = 0;
     gameType = getGameType();
     movieList = JSON.parse(localStorage.getItem(`${genre}`)) || [];
@@ -61,7 +62,7 @@ function getMovieList(genre) {
             }
             if (genre != null) {
                 localStorage.setItem(`${genre}`, JSON.stringify(movieList))
-            }else{
+            } else {
                 localStorage.setItem(`all`, JSON.stringify(movieList))
             }
             generateTwoMovies();
@@ -165,8 +166,14 @@ function compareAnswers(event) {
 
 // goes to gameover screen
 function gameOver() {
-    // goes to gameover page
     var url = window.location.href
+    var results = {
+        finalScore: score,
+        genreUsed: genre,
+        gameTypeUsed: gameType
+    }
+
+    localStorage.setItem('results', JSON.stringify(results))
 
     if (window.location.protocol == 'http:') {
         window.location = `/gameover.html`
