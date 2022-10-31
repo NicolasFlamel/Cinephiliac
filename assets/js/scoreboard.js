@@ -1,5 +1,4 @@
 var boxTableEl = document.querySelector('#box-office-table tbody');
-var budgetTableEl = document.querySelector('#budget-table tbody');
 var ratingsTableEl = document.querySelector('#ratings-table tbody');
 var scoreboard = JSON.parse(localStorage.getItem('scoreboard')) || [];
 
@@ -25,9 +24,7 @@ function displayOnBoard(score) {
 
     if (score.gameTypeUsed == 'Box office') {
         boxTableEl.appendChild(trEl);
-    } else if (score.gameTypeUsed == 'Budget') {
-        budgetTableEl.appendChild(trEl);
-    } else if (score.gameTypeUsed == 'Ratings') {
+    } else if (score.gameTypeUsed == 'Rating') {
         ratingsTableEl.appendChild(trEl);
     } else {
         console.log('failed ln 17');

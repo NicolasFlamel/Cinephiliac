@@ -87,14 +87,11 @@ function createMovieObj() {
             if (gameType == 'box_office' && data.BoxOffice != 'N/A') {
                 movie['movieData'] = data.BoxOffice;
                 movie['poster'] = data.Poster;
-            } else if (gameType == 'budget' && data.budget != 'N/A') {
-                movie['movieData'] = data.budget;
-                movie['poster'] = data.Poster;
             } else if (gameType == 'rating' && data.imdbRating != 'N/A') {
                 movie['movieData'] = data.imdbRating;
                 movie['poster'] = data.Poster;
             } else {
-                createMovieObj(movie.type);
+                createMovieObj(gameType);
                 return;
             }
             //render movie
@@ -136,11 +133,16 @@ function loadMovie(secondMovie) {
         questionEl.textContent = `${secondMovie.name} has a higher or lower ${tempGameType} amount than ${firstMovie.name}?`
     }
 
-    localStorage.setItem('movie-2', JSON.stringify(secondMovie))
+    if (firstMovie.movieData == secondMovie.movieData) {
+        createMovieObj(gameType);
+    }else {
+        localStorage.setItem('movie-2', JSON.stringify(secondMovie))
+    
+        movieCardEl[1].children[0].textContent = `${tempGameType}: ???`;
+        movieCardEl[1].children[1].src = secondMovie.poster;
+        movieCardEl[1].children[2].textContent = secondMovie.name;
+    }
 
-    movieCardEl[1].children[0].textContent = `${tempGameType}: ???`;
-    movieCardEl[1].children[1].src = secondMovie.poster;
-    movieCardEl[1].children[2].textContent = secondMovie.name;
 }
 
 function compareAnswers(event) {
@@ -161,7 +163,7 @@ function compareAnswers(event) {
         movieOneData < movieTwoData && userAnswer == 'lower') {
         gameOver();
     } else {
-        console.log('failed ln 138');
+        console.log('failed');
     }
 }
 
