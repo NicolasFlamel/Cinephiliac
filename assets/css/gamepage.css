@@ -1,8 +1,53 @@
-img {
-    height: auto;
-    width: 300px;
+:root {
+    --height-text: 30px;
+    --height-img: 445px;
 }
+
+body {
+    margin: 10px;
+}
+
+#question {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+
+img {
+    overflow: hidden;
+}
+
 .game {
     display: flex;
-    padding: 10px;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    text-align: center;
+    margin: 20px;
+}
+
+.game > * {
+    margin: 10px;
+}
+
+.movie-card {
+    width: 300px;
+    height: 600px;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: auto;
+}
+
+.game-option {
+    height: 30px;
+}
+
+.movie-name {
+    margin-top: auto;
+}
+
+.game #higher-lower-btns {
+    flex-basis: 100%;
 }
