@@ -1,10 +1,21 @@
+@import 'https://fonts.googleapis.com/css?family=Fascinate+Inline';
+
 :root {
     --height-text: 30px;
     --height-img: 445px;
+    --miami-font: 'Fascinate Inline';
+    --blue: #0bd3d3;
+    --pink: #f890e7;
 }
 
 body {
     margin: 10px;
+}
+
+main {
+    margin: 10px;
+    padding: 10px;
+    border: outset var(--blue);
 }
 
 #question {
@@ -13,20 +24,15 @@ body {
     text-align: center;
 }
 
-img {
-    overflow: hidden;
-}
-
 .game {
     display: flex;
     flex-wrap: wrap;
-    align-items: stretch;
-    justify-content: center;
     text-align: center;
+    justify-content: center;
     margin: 20px;
 }
 
-.game > * {
+.game>* {
     margin: 10px;
 }
 
@@ -50,4 +56,25 @@ img {
 
 .game #higher-lower-btns {
     flex-basis: 100%;
+}
+
+#back-btn {
+    background-image: linear-gradient(to right, var(--pink) 0%, var(--blue) 51%, var(--pink) 100%);
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+}
+
+#back-btn:hover {
+    background-position: right center;
+    /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
 }
