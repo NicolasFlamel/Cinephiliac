@@ -130,7 +130,7 @@ function loadMovie(secondMovie) {
         movieCardEl[0].children[1].src = firstMovie.poster;
         movieCardEl[0].children[2].textContent = firstMovie.name;
 
-        questionEl.textContent = `${secondMovie.name} has a higher or lower ${tempGameType} amount than ${firstMovie.name}?`
+        questionEl.innerHTML = `<em>${secondMovie.name}</em> has a higher or lower ${tempGameType} amount than <em>${firstMovie.name}</em>?`
     }
 
     if (firstMovie.movieData == secondMovie.movieData) {
