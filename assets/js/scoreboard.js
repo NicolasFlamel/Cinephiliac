@@ -39,11 +39,6 @@ function goHome(event) {
     window.location.replace(url);
 }
 
-function toggleFilters(event) {
-
-}
-
 document.getElementById('back-btn').addEventListener('click', goHome);
-document.getElementById('toggle-btn').addEventListener('click', toggleFilters);
 
 onLoad();

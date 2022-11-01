@@ -8,9 +8,7 @@ function onLoad() {
         gameBtnEL[i].addEventListener('click', navigateToGame)
     }
 
-    $('.ui.dropdown').dropdown({
-        clearable: true
-    });
+    $('.ui.dropdown').dropdown();
 }
 
 function navigateToGame(event) {
