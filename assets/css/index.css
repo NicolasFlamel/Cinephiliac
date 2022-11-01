@@ -1,21 +1,25 @@
-.genre-options, .decade-options {
-    max-width: 500px;
-}
+@import 'https://fonts.googleapis.com/css?family=Fascinate+Inline';
+
 :root {
-    --height-text: 30px;
-    --height-img: 445px;
-    --miami-font: 'Fascinate Inline';
     --blue: #0bd3d3;
     --pink: #f890e7;
+    --height-text: 30px;
+    --height-img: 445px;
+    --title-font: 'Fascinate Inline';
 }
+
 h1 {
+    color: white;
+    font-family: var(--title-font);
+    text-shadow: 3px 3px black;
+    font-size: 50px;
     text-align: center;
+    padding: 10px;
 }
+
+h1,
 header {
-    text-align: right;
-}
-h1, header {
-    background: rgb(11,11,11);
+    background: rgb(11, 11, 11);
     background-image: linear-gradient(to right, var(--pink) 0%, var(--blue) 51%, var(--pink) 100%);
 }
 
@@ -23,22 +27,38 @@ header {
     display: flex;
     justify-content: end;
     padding: 12px 15px 12px 15px;
+    text-align: right;
 }
 
-button {
-    height: 30px;
-    box-shadow: 0 0 20px #eee!important;
-    background-color: slateblue!important;
-    border-color: var(--pink)!important;
-    color: var(--pink)!important;
+.genre-options,
+.decade-options {
+    max-width: 500px;
 }
-button:hover {
-    background-color: slateblue!important;
-    border-color: var(--blue)!important;
-    color: var(--blue)!important;
-}
+
 section {
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.ui.button.game-btn,
+#scoreboard-btn {
+    background-image: linear-gradient(to right, var(--pink) 0%, var(--blue) 51%, var(--pink) 100%);
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+}
+
+.game-btn:hover,
+#scoreboard-btn:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
 }
