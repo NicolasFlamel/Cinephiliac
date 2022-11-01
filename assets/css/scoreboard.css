@@ -2,13 +2,31 @@ h1 {
     text-align: center;
 }
 
+:root {
+    --height-text: 30px;
+    --height-img: 445px;
+    --miami-font: 'Fascinate Inline';
+    --blue: #0bd3d3;
+    --pink: #f890e7;
+}
+
 header {
     display: flex;
     justify-content: space-between;
     padding: 12px 15px 12px 15px;
     background: rgb(11,11,11);
-    background: linear-gradient(90deg, rgba(11,11,11,1) 0%, rgba(228,219,18,1) 35%, rgba(235,98,12,1) 100%);
+    background-image: linear-gradient(to right, var(--pink) 0%, var(--blue) 51%, var(--pink) 100%);
 }
+
 button {
     height: 30px;
+    box-shadow: 0 0 20px #eee!important;
+    background-color: slateblue!important;
+    border-color: var(--pink)!important;
+    color: var(--pink)!important;
+}
+button:hover {
+    background-color: slateblue!important;
+    border-color: var(--blue)!important;
+    color: var(--blue)!important;
 }
