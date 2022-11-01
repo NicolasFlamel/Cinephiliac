@@ -46,10 +46,10 @@ function getMovieList(genre) {
     var urlImdb
 
     if (genre == 'all_genres') {
-        urlImdb = `https://imdb-api.com/API/AdvancedSearch/${config.imdbApiKey}/?title_type=feature&count=250&groups=top_1000&countries=us&sort=boxoffice_gross_us,desc`;
+        urlImdb = `https://imdb-api.com/API/AdvancedSearch/k_no5d2zsg/?title_type=feature&count=250&groups=top_1000&countries=us&sort=boxoffice_gross_us,desc`;
     }
     else {
-        urlImdb = `https://imdb-api.com/API/AdvancedSearch/${config.imdbApiKey}/?title_type=feature&genres=${genre}&count=250&groups=top_1000&countries=us&sort=boxoffice_gross_us,desc`;
+        urlImdb = `https://imdb-api.com/API/AdvancedSearch/k_no5d2zsg/?title_type=feature&genres=${genre}&count=250&groups=top_1000&countries=us&sort=boxoffice_gross_us,desc`;
     }
 
     fetch(urlImdb)
