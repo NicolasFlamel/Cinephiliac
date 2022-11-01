@@ -27,7 +27,7 @@ function displayOnBoard(score) {
     } else if (score.gameTypeUsed == 'Rating') {
         ratingsTableEl.appendChild(trEl);
     } else {
-        console.log('failed ln 17');
+        console.log('failed');
     }
 }
 
