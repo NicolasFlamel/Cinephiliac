@@ -131,18 +131,17 @@ function loadMovie(secondMovie) {
         movieCardEl[0].children[2].textContent = firstMovie.name;
 
         questionEl.innerHTML = `<em>${secondMovie.name}</em> has a higher or lower ${tempGameType} amount than <em>${firstMovie.name}</em>?`
+
+        if (firstMovie.movieData == secondMovie.movieData) {
+            createMovieObj(gameType);
+        }
     }
 
-    if (firstMovie.movieData == secondMovie.movieData) {
-        createMovieObj(gameType);
-    }else {
-        localStorage.setItem('movie-2', JSON.stringify(secondMovie))
-    
-        movieCardEl[1].children[0].textContent = `${tempGameType}: ???`;
-        movieCardEl[1].children[1].src = secondMovie.poster;
-        movieCardEl[1].children[2].textContent = secondMovie.name;
-    }
+    localStorage.setItem('movie-2', JSON.stringify(secondMovie))
 
+    movieCardEl[1].children[0].textContent = `${tempGameType}: ???`;
+    movieCardEl[1].children[1].src = secondMovie.poster;
+    movieCardEl[1].children[2].textContent = secondMovie.name;
 }
 
 function compareAnswers(event) {
