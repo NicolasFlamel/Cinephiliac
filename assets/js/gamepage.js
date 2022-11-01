@@ -110,7 +110,7 @@ function randomMovieName() {
 
 function getMovieData(title) {
     title = title.replaceAll(" ", "+")
-    var urlOmdb = `http://www.omdbapi.com/?t=${title}&apikey=adb3ba12`;
+    var urlOmdb = `https://www.omdbapi.com/?t=${title}&apikey=adb3ba12`;
 
     return fetch(urlOmdb);
 }
