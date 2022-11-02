@@ -3,13 +3,7 @@ A frustratingly addictive game of higher or lower using movies statistics.
 
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
-
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
-
+This project was created to make an enjoyable game applications for users to use and play with. All the contributors had a common interest in movies so we naturally wanted to make a project centered around it. Some type of game caught our attention so we joined the two ideas to make a game centered around movies. This projected helped us practice our front-end development skills since we had to fully create the website from scratch. 
 
 ## Installation
 
@@ -19,7 +13,7 @@ N/A
 
 Visit the website https://nicolasflamel.github.io/Cinephiliac/ to see the working project.
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative file path, add it to your README using the following syntax:
+On the main page you select the genre you want to use the click on the button for the specific game you wish to play. The next page will load with a loading sign and once the game loads 2 different movies you can select if the 2nd movie is higher or lower than the first one depending on the game type such as box office amount or ratings. If you guess correct then the game progresses where the 2nd movie gets compared to the next new movie that is loaded in. Game continues until you guess incorrectly which will take you to another page with your score and stats which you can save on a local scoreboard.
 
 ![Project Preview](./assets/images/project_preview.png)
 
@@ -27,11 +21,11 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 Amauri Rodriguez - https://github.com/NicolasFlamel
 
-Jordan Ferrario - https://github.com/JordanFerrario
+Tazlina Shake - https://github.com/Tshake5
 
 Veroneca Sanders - https://github.com/Vtsander
 
-Tazlina Shake - https://github.com/Tshake5
+Jordan Ferrario - https://github.com/JordanFerrario
 
 
 ## License
