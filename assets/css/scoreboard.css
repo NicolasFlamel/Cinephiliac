@@ -20,6 +20,19 @@ header {
     background-image: linear-gradient(to right, var(--pink) 0%, var(--blue) 51%, var(--pink) 100%);
 }
 
+nav { 
+    display: flex;
+    flex: wrap; 
+    position: relative;
+}
+
+nav h1 {
+    left: 50%;
+    margin: auto;
+    position: absolute;
+    transform: translate(-50%);
+}
+
 .ui.grid.container {
     margin: 30px;
     justify-content: space-around;
