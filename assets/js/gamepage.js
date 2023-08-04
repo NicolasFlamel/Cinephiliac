@@ -7,8 +7,8 @@ var movieList;
 async function onLoad() {
   //somehow grab genre
 
-  genre = getGenre();
   score = 0;
+  genre = getGenre();
   gameType = getGameType();
   movieList = JSON.parse(localStorage.getItem(`${genre}`)) || [];
 
@@ -35,10 +35,8 @@ function getGenre() {
   return tempGenre;
 }
 
-async function getMovieList(genre, page) {
-  const url = `https://moviesdatabase.p.rapidapi.com/titles?startYear=2000&list=top_rated_english_250&page=${
-    page || 1
-  }`;
+async function getMovieList(genre, page = 1) {
+  const url = `https://moviesdatabase.p.rapidapi.com/titles?startYear=2000&list=top_rated_english_250&page=${page}`;
   const options = {
     method: "GET",
     headers: {
@@ -61,6 +59,8 @@ async function getMovieList(genre, page) {
       genre != null
         ? localStorage.setItem(`${genre}`, JSON.stringify(movieList))
         : localStorage.setItem(`all`, JSON.stringify(movieList));
+
+      if (data.next) getMovieList(genre, page + 1);
     });
 }
 
@@ -121,9 +121,7 @@ function loadMovie(secondMovie) {
 
     questionEl.innerHTML = `<em>${secondMovie.name}</em> has a higher or lower ${tempGameType} amount than <em>${firstMovie.name}</em>?`;
 
-    if (firstMovie.movieData == secondMovie.movieData) {
-      createMovieObj(gameType);
-    }
+    if (firstMovie.movieData == secondMovie.movieData) createMovieObj(gameType);
 
     // testing purposes
     // secondMovie.movieData < firstMovie.movieData
