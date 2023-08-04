@@ -4,7 +4,7 @@ var score;
 var gameType;
 var movieList;
 
-function onLoad() {
+async function onLoad() {
   //somehow grab genre
 
   genre = getGenre();
@@ -12,58 +12,55 @@ function onLoad() {
   gameType = getGameType();
   movieList = JSON.parse(localStorage.getItem(`${genre}`)) || [];
 
-  if (movieList.length == 0) {
-    getMovieList(genre);
-  } else {
-    generateTwoMovies();
-  }
+  if (movieList.length == 0) await getMovieList(genre);
+
+  generateTwoMovies();
 }
 
 function getGameType() {
-  var tempGameType;
   var url = window.location.href;
   var firstIndex = url.indexOf("game=") + 5;
   var lastIndex = url.indexOf("&");
-
-  tempGameType = url.slice(firstIndex, lastIndex);
+  var tempGameType = url.slice(firstIndex, lastIndex);
 
   return tempGameType;
 }
 
 function getGenre() {
-  var tempGenre;
   var url = window.location.href;
   var firstIndex = url.indexOf("genre=") + 6;
   var lastIndex = window.location.href.length;
-
-  tempGenre = url.slice(firstIndex, lastIndex);
+  var tempGenre = url.slice(firstIndex, lastIndex);
 
   return tempGenre;
 }
 
-function getMovieList(genre) {
-  var urlImdb;
+async function getMovieList(genre, page) {
+  const url = `https://moviesdatabase.p.rapidapi.com/titles?startYear=2000&list=top_rated_english_250&page=${
+    page || 1
+  }`;
+  const options = {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": "defb4cff6bmsh5c3c9fc6bad23c4p1b26d6jsn3e83925178e0",
+      "X-RapidAPI-Host": "moviesdatabase.p.rapidapi.com",
+    },
+  };
 
-  if (genre == "all_genres") {
-    urlImdb = `https://imdb-api.com/API/AdvancedSearch/k_no5d2zsg/?title_type=feature&count=250&groups=top_1000&countries=us&sort=boxoffice_gross_us,desc`;
-  } else {
-    urlImdb = `https://imdb-api.com/API/AdvancedSearch/k_no5d2zsg/?title_type=feature&genres=${genre}&count=250&groups=top_1000&countries=us&sort=boxoffice_gross_us,desc`;
-  }
-
-  fetch(urlImdb)
-    .then(function (response) {
+  await fetch(url, options)
+    .then((response) => {
       return response.json();
     })
-    .then(function (data) {
+    .then((data) => {
       for (var i = 0; i < data.results.length; i++) {
-        movieList.push(data.results[i].title);
+        movieList.push({
+          title: data.results[i].originalTitleText.text,
+          id: data.results[i].id,
+        });
       }
-      if (genre != null) {
-        localStorage.setItem(`${genre}`, JSON.stringify(movieList));
-      } else {
-        localStorage.setItem(`all`, JSON.stringify(movieList));
-      }
-      generateTwoMovies();
+      genre != null
+        ? localStorage.setItem(`${genre}`, JSON.stringify(movieList))
+        : localStorage.setItem(`all`, JSON.stringify(movieList));
     });
 }
 
@@ -73,44 +70,38 @@ function generateTwoMovies() {
 }
 
 function createMovieObj() {
-  var movie = {
-    name: randomMovieName(),
-  };
+  const movie = randomMovie();
 
-  getMovieData(movie.name)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      if (gameType == "box_office" && data.BoxOffice != "N/A") {
-        movie["movieData"] = data.BoxOffice;
-        movie["poster"] = data.Poster;
-      } else if (gameType == "rating" && data.imdbRating != "N/A") {
-        movie["movieData"] = data.imdbRating;
-        movie["poster"] = data.Poster;
-      } else {
-        createMovieObj(gameType);
-        return;
-      }
-      //render movie
-      loadMovie(movie);
-    });
+  getMovieData(movie.id).then((data) => {
+    if (gameType == "box_office" && data.BoxOffice != "N/A") {
+      movie["movieData"] = data.BoxOffice;
+      movie["poster"] = data.Poster;
+    } else if (gameType == "rating" && data.imdbRating != "N/A") {
+      movie["movieData"] = data.imdbRating;
+      movie["poster"] = data.Poster;
+    } else {
+      createMovieObj(gameType);
+      return;
+    }
+    //render movie
+    loadMovie(movie);
+  });
 }
 
-function randomMovieName() {
+function randomMovie() {
+  if (movieList.length == 0) throw new Error("Out of movies!");
   var randomIndex = Math.floor(Math.random() * (movieList.length - 1));
-  var title = movieList[randomIndex];
+  var movie = movieList[randomIndex];
 
   movieList.splice(randomIndex, 1);
 
-  return title;
+  return movie;
 }
 
-function getMovieData(title) {
-  title = title.replaceAll(" ", "+");
-  var urlOmdb = `https://www.omdbapi.com/?t=${title}&apikey=adb3ba12`;
+function getMovieData(id) {
+  var urlOmdb = `https://www.omdbapi.com/?i=${id}&apikey=adb3ba12`;
 
-  return fetch(urlOmdb);
+  return fetch(urlOmdb).then((response) => response.json());
 }
 
 // moves movie in 2nd slot to 1st and loads passed in movie to 2nd slot
@@ -133,6 +124,11 @@ function loadMovie(secondMovie) {
     if (firstMovie.movieData == secondMovie.movieData) {
       createMovieObj(gameType);
     }
+
+    // testing purposes
+    // secondMovie.movieData < firstMovie.movieData
+    //   ? console.log('lower')
+    //   : console.log('higher');
   }
 
   localStorage.setItem("movie-2", JSON.stringify(secondMovie));
