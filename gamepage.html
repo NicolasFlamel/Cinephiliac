@@ -1,45 +1,57 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
-    <link rel="stylesheet" href="./assets/css/gamepage.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css"
+    />
+    <link rel="stylesheet" href="./assets/css/gamepage.css" />
     <title>Game Page</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <header>
-        <nav><button type="button" id="back-btn" class="ui button">Return Home</button></nav>
+      <nav>
+        <button type="button" id="back-btn" class="ui button">
+          Return Home
+        </button>
+      </nav>
     </header>
     <main>
-        <h1 id="question">Loading...</h1>
-        <section class="game">
-            <section class="movie-card">
-                <h2 class="game-option"></h2>
-                <img class="movie-poster" src="">
-                <h2 class="movie-name"></h2>
-            </section>
-            <section class="movie-card">
-                <h2 class="game-option"></h2>
-                <img class="movie-poster" src="">
-                <h2 class="movie-name"></h2>
-            </section>
-            <section id="higher-lower-btns">
-                <div class="ui buttons">
-                    <button type="button" value="higher" class="ui button positive">Higher</button>
-                    <div class="or"></div>
-                    <button type="button" value="lower" class="ui button negative">Lower</button>
-                </div>
-            </section>
+      <h1 id="question">Loading...</h1>
+      <section class="game">
+        <section class="movie-card">
+          <h2 class="game-option"></h2>
+          <img class="movie-poster" src="" />
+          <h2 class="movie-name"></h2>
         </section>
+        <section class="movie-card">
+          <h2 class="game-option"></h2>
+          <img class="movie-poster" src="" />
+          <h2 class="movie-name"></h2>
+        </section>
+        <section id="higher-lower-btns">
+          <div class="ui buttons">
+            <button type="button" value="higher" class="ui button positive">
+              Higher
+            </button>
+            <div class="or"></div>
+            <button type="button" value="lower" class="ui button negative">
+              Lower
+            </button>
+          </div>
+        </section>
+      </section>
     </main>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
     <script src="./assets/js/gamepage.js"></script>
-</body>
-
+  </body>
 </html>

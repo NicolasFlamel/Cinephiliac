@@ -1,44 +1,52 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
-    <link rel="stylesheet" href="./assets/css/gameover.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css"
+    />
+    <link rel="stylesheet" href="./assets/css/gameover.css" />
     <title>Game Over 😭</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <header>
-        <nav>
-            <button type="button" id="back-btn" class="ui button">Return Home</button>
-            <h1>Game Over</h1>
-            <button type="button" id="scoreboard-btn" class="ui button">Scoreboard</button>
-        </nav> 
+      <nav>
+        <button type="button" id="back-btn" class="ui button">
+          Return Home
+        </button>
+        <h1>Game Over</h1>
+        <button type="button" id="scoreboard-btn" class="ui button">
+          Scoreboard
+        </button>
+      </nav>
     </header>
     <main>
-        <section id="score" class="ui warning message">
-            <!-- display results -->
-            <h2>You're score was: <span class="results"></span></h2>
-            <h3>Game mode: <span class="results"></span></h3>
-            <h3>Genre: <span class="results"></span></h3>
-        </section>
-        <section id="user-info">
-            <!-- user inputs info for scoreboard -->
-            <h2>Enter Player Name: </h2>
-            <div class="ui input">
-                <input type="text" placeholder="Name">
-                <button class="ui button" id="save-btn" type="button">Save</button>
-            </div>
-        </section>
-        <div class="ui divider"></div>
+      <section id="score" class="ui warning message">
+        <!-- display results -->
+        <h2>You're score was: <span class="results"></span></h2>
+        <h3>Game mode: <span class="results"></span></h3>
+        <h3>Genre: <span class="results"></span></h3>
+      </section>
+      <section id="user-info">
+        <!-- user inputs info for scoreboard -->
+        <h2>Enter Player Name:</h2>
+        <div class="ui input">
+          <input type="text" placeholder="Name" />
+          <button class="ui button" id="save-btn" type="button">Save</button>
+        </div>
+      </section>
+      <div class="ui divider"></div>
     </main>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
     <script src="./assets/js/gameover.js"></script>
-</body>
-
+  </body>
 </html>

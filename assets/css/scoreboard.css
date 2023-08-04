@@ -1,80 +1,93 @@
-@import 'https://fonts.googleapis.com/css?family=Fascinate+Inline';
+@import "https://fonts.googleapis.com/css?family=Fascinate+Inline";
 
 :root {
-    --blue: #0bd3d3;
-    --pink: #f890e7;
-    --title-font: 'Fascinate Inline';
+  --blue: #0bd3d3;
+  --pink: #f890e7;
+  --title-font: "Fascinate Inline";
 }
 
 h1 {
-    font-family: var(--title-font);
-    text-shadow: 3px 3px black;
-    font-size: 50px;
-    text-align: center;
+  font-family: var(--title-font);
+  text-shadow: 3px 3px black;
+  font-size: 50px;
+  text-align: center;
 }
 
 header {
-    padding: 15px;
-    color: white;
-    background: rgb(11,11,11);
-    background-image: linear-gradient(to right, var(--pink) 0%, var(--blue) 51%, var(--pink) 100%);
+  padding: 15px;
+  color: white;
+  background: rgb(11, 11, 11);
+  background-image: linear-gradient(
+    to right,
+    var(--pink) 0%,
+    var(--blue) 51%,
+    var(--pink) 100%
+  );
 }
 
-nav { 
-    display: flex;
-    flex: wrap; 
-    position: relative;
+nav {
+  display: flex;
+  flex: wrap;
+  position: relative;
 }
 
 nav h1 {
-    left: 50%;
-    margin: auto;
-    position: absolute;
-    transform: translate(-50%);
+  left: 50%;
+  margin: auto;
+  position: absolute;
+  transform: translate(-50%);
 }
 
 .ui.grid.container {
-    margin: 30px;
-    justify-content: space-around;
-    border: outset var(--blue);
+  margin: 30px;
+  justify-content: space-around;
+  border: outset var(--blue);
 }
 
-table { 
-    border-collapse: collapse; 
-    margin: 5px;
+table {
+  border-collapse: collapse;
+  margin: 5px;
 }
 
-th, td {
-    color: var(--blue);
-    text-shadow: 1px 1px black;
+th,
+td {
+  color: var(--blue);
+  text-shadow: 1px 1px black;
 }
 
 tbody > tr {
-    border-bottom: solid var(--pink) 5px;
+  border-bottom: solid var(--pink) 5px;
 }
 
 td {
-    margin: 10px;
-    font-size: 20px;
-    text-align: center;
+  margin: 10px;
+  font-size: 20px;
+  text-align: center;
 }
 
-#back-btn, #scoreboard-btn {
-    background-image: linear-gradient(to right, var(--pink) 0%, var(--blue) 51%, var(--pink) 100%);
-    margin: 10px;
-    padding: 15px 45px;
-    text-align: center;
-    text-transform: uppercase;
-    transition: 0.5s;
-    background-size: 200% auto;
-    color: white;
-    box-shadow: 0 0 20px #eee;
-    border-radius: 10px;
-    display: block;
+#back-btn,
+#scoreboard-btn {
+  background-image: linear-gradient(
+    to right,
+    var(--pink) 0%,
+    var(--blue) 51%,
+    var(--pink) 100%
+  );
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
 }
 
-.game-btn:hover, #scoreboard-btn:hover {
-    background-position: right center;
-    color: #fff;
-    text-decoration: none;
+.game-btn:hover,
+#scoreboard-btn:hover {
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
 }
