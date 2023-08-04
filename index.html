@@ -1,59 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
-    <link rel="stylesheet" href="./assets/css/index.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css"
+    />
+    <link rel="stylesheet" href="./assets/css/index.css" />
     <title>Cinephiliac</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <header>
-        <nav><button type="button" id="scoreboard-btn" class="ui button">Scoreboard</button></nav>
+      <nav>
+        <button type="button" id="scoreboard-btn" class="ui button">
+          Scoreboard
+        </button>
+      </nav>
     </header>
     <main>
-        <h1>🎬Cinephiliac🎬</h1>
-        <section>
-            <section id="box-office-game">
-                <button type="button" class="ui button game-btn" value="box_office">Box Office</button>
-                <select name="genres" id="bo-genre" class="ui selection dropdown">
-                    <option value="all_genres">All Genre</option>
-                    <option value="action">Action</option>
-                    <option value="animation">Animation</option>
-                    <option value="comedy">Comedy</option>
-                    <option value="crime">Crime</option>
-                    <option value="family">Family</option>
-                    <option value="horror">Horror</option>
-                    <option value="romance">Romance</option>
-                    <option value="sci_Fi">Sci-Fi</option>
-                    <option value="thriller">Thriller</option>
-                </select>
-            </section>
+      <h1>🎬Cinephiliac🎬</h1>
+      <section>
+        <section id="box-office-game">
+          <button type="button" class="ui button game-btn" value="box_office">
+            Box Office
+          </button>
+          <select name="genres" id="bo-genre" class="ui selection dropdown">
+            <option value="all_genres">All Genre</option>
+            <option value="action">Action</option>
+            <option value="animation">Animation</option>
+            <option value="comedy">Comedy</option>
+            <option value="crime">Crime</option>
+            <option value="family">Family</option>
+            <option value="horror">Horror</option>
+            <option value="romance">Romance</option>
+            <option value="sci_Fi">Sci-Fi</option>
+            <option value="thriller">Thriller</option>
+          </select>
         </section>
-        <section id="ratings-game">
-            <button type="button" class="ui button game-btn" value="rating">Ratings</button>
-            <select name="genres" id="ratings-genre" class="ui selection dropdown genre-options">
-                <option value="all_genres">All Genre</option>
-                <option value="action">Action</option>
-                <option value="animation">Animation</option>
-                <option value="comedy">Comedy</option>
-                <option value="crime">Crime</option>
-                <option value="family">Family</option>
-                <option value="horror">Horror</option>
-                <option value="romance">Romance</option>
-                <option value="sci_fi">Sci-Fi</option>
-                <option value="thriller">Thriller</option>
-            </select>
-        </section>
+      </section>
+      <section id="ratings-game">
+        <button type="button" class="ui button game-btn" value="rating">
+          Ratings
+        </button>
+        <select
+          name="genres"
+          id="ratings-genre"
+          class="ui selection dropdown genre-options"
+        >
+          <option value="all_genres">All Genre</option>
+          <option value="action">Action</option>
+          <option value="animation">Animation</option>
+          <option value="comedy">Comedy</option>
+          <option value="crime">Crime</option>
+          <option value="family">Family</option>
+          <option value="horror">Horror</option>
+          <option value="romance">Romance</option>
+          <option value="sci_fi">Sci-Fi</option>
+          <option value="thriller">Thriller</option>
+        </select>
+      </section>
     </main>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
     <script src="./assets/js/index.js"></script>
-
-</body>
-
+  </body>
 </html>

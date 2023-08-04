@@ -1,63 +1,85 @@
 @import 'https://fonts.googleapis.com/css?family=Fascinate+Inline';
 :root {
-    --blue: #0bd3d3;
-    --pink: #f890e7;
-    --title-font: 'Fascinate Inline';
+  --blue: #0bd3d3;
+  --pink: #f890e7;
+  --title-font: 'Fascinate Inline';
 }
 
 h1 {
-    text-align: center;
-    font-size: 50px;
-    text-shadow: 3px 3px black;
-    font-family: var(--title-font);
+  text-align: center;
+  font-size: 50px;
+  text-shadow: 3px 3px black;
+  font-family: var(--title-font);
 }
 
 header {
-    padding: 12px 15px 12px 15px;
-    color: white;
-    background: rgb(11,11,11);
-    background-image: linear-gradient(to right, var(--pink) 0%, var(--blue) 51%, var(--pink) 100%);
+  padding: 12px 15px 12px 15px;
+  color: white;
+  background: rgb(11, 11, 11);
+  background-image: linear-gradient(
+    to right,
+    var(--pink) 0%,
+    var(--blue) 51%,
+    var(--pink) 100%
+  );
 }
 
-nav { 
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-h2, h3, section {
-    text-align: center;
+h2,
+h3,
+section {
+  text-align: center;
 }
 
-#score, #user-info {
-    width: 50%;
-    margin: 10px auto;
-    padding: 5px;
-    background-image: linear-gradient(to right, var(--pink) 0%, var(--blue) 51%, var(--pink) 100%);
-    background-size: 200% auto;
-    transition: 0.5s;
-    background-size: 200% auto;
-    color: white;
-    box-shadow: 0 0 20px #eee;
-    border-radius: 10px;
+#score,
+#user-info {
+  width: 50%;
+  margin: 10px auto;
+  padding: 5px;
+  background-image: linear-gradient(
+    to right,
+    var(--pink) 0%,
+    var(--blue) 51%,
+    var(--pink) 100%
+  );
+  background-size: 200% auto;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
 }
 
-#back-btn, #scoreboard-btn, .ui.button {
-    background-image: linear-gradient(to right, var(--pink) 0%, var(--blue) 51%, var(--pink) 100%);
-    margin: 10px;
-    padding: 15px 45px;
-    text-align: center;
-    text-transform: uppercase;
-    transition: 0.5s;
-    background-size: 200% auto;
-    color: white;
-    box-shadow: 0 0 20px #eee;
-    border-radius: 10px;
-    display: block;
+#back-btn,
+#scoreboard-btn,
+.ui.button {
+  background-image: linear-gradient(
+    to right,
+    var(--pink) 0%,
+    var(--blue) 51%,
+    var(--pink) 100%
+  );
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
 }
 
-#back-btn:hover, #scoreboard-btn:hover, #save-btn:hover {
-    background-position: right center;
-    color: #fff;
-    text-decoration: none;
+#back-btn:hover,
+#scoreboard-btn:hover,
+#save-btn:hover {
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
 }

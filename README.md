@@ -1,9 +1,10 @@
 # Cinephiliac
+
 A frustratingly addictive game of higher or lower using movies statistics.
 
 ## Description
 
-This project was created to make an enjoyable game applications for users to use and play with. All the contributors had a common interest in movies so we naturally wanted to make a project centered around it. Some type of game caught our attention so we joined the two ideas to make a game centered around movies. This projected helped us practice our front-end development skills since we had to fully create the website from scratch. 
+This project was created to make an enjoyable game applications for users to use and play with. All the contributors had a common interest in movies so we naturally wanted to make a project centered around it. Some type of game caught our attention so we joined the two ideas to make a game centered around movies. This projected helped us practice our front-end development skills since we had to fully create the website from scratch.
 
 ## Installation
 
@@ -26,7 +27,6 @@ Tazlina Shake - https://github.com/Tshake5
 Veroneca Sanders - https://github.com/Vtsander
 
 Jordan Ferrario - https://github.com/JordanFerrario
-
 
 ## License
 
