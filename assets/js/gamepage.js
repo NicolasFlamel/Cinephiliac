@@ -6,15 +6,12 @@ var movieList;
 
 async function onLoad() {
   //somehow grab genre
-
   score = 0;
   genre = getGenre();
   gameType = getGameType();
   movieList = JSON.parse(localStorage.getItem(`${genre}`)) || [];
 
-  if (movieList.length == 0) {
-    await getMovieList(genre);
-  }
+  if (movieList.length == 0) await getMovieList(genre);
 
   generateTwoMovies();
 }
@@ -62,13 +59,14 @@ async function getMovieList(genre, page = 1) {
         ? localStorage.setItem(`${genre}`, JSON.stringify(movieList))
         : localStorage.setItem(`all`, JSON.stringify(movieList));
 
-      // if (data.next) getMovieList(genre, page + 1);
+      if (data.next) getMovieList(genre, page + 1);
     });
 }
 
 function generateTwoMovies() {
   createMovieObj();
   createMovieObj();
+  enableButtons();
 }
 
 function createMovieObj() {
@@ -82,7 +80,7 @@ function createMovieObj() {
       movie['movieData'] = data.imdbRating;
       movie['poster'] = data.Poster;
     } else {
-      createMovieObj(gameType);
+      createMovieObj();
       return;
     }
     //render movie
@@ -191,6 +189,12 @@ function goHome(event) {
 
   url = url.slice(0, index) + '/index.html';
   window.location.replace(url);
+}
+
+// enables the higher or lower buttons once movies load at first page load
+function enableButtons() {
+  const disabledBtns = document.querySelectorAll('#higher-lower-btns .button');
+  disabledBtns.forEach((button) => (button.disabled = false));
 }
 
 document.getElementById('back-btn').addEventListener('click', goHome);
