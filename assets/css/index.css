@@ -1,11 +1,11 @@
-@import "https://fonts.googleapis.com/css?family=Fascinate+Inline";
+@import 'https://fonts.googleapis.com/css?family=Fascinate+Inline';
 
 :root {
   --blue: #0bd3d3;
   --pink: #f890e7;
   --height-text: 30px;
   --height-img: 445px;
-  --title-font: "Fascinate Inline";
+  --title-font: 'Fascinate Inline';
 }
 
 h1 {

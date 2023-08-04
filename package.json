@@ -11,5 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "prettier": "^3.0.1"
+  },
+  "prettier": {
+    "singleQuote": true
   }
 }
