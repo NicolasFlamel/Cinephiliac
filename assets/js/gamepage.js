@@ -35,7 +35,10 @@ function getGenre() {
 }
 
 async function getMovieList(genre, page = 1) {
-  const url = `https://moviesdatabase.p.rapidapi.com/titles?startYear=2000&list=top_rated_english_250&page=${page}`;
+  var url;
+  genre
+    ? (url = `https://moviesdatabase.p.rapidapi.com/titles?startYear=2000&list=most_pop_movies&page=${page}&genre=${genre}`)
+    : (url = `https://moviesdatabase.p.rapidapi.com/titles?startYear=2000&list=most_pop_movies&page=${page}`);
   const options = {
     method: 'GET',
     headers: {
@@ -44,23 +47,21 @@ async function getMovieList(genre, page = 1) {
     },
   };
 
-  await fetch(url, options)
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      for (var i = 0; i < data.results.length; i++) {
-        movieList.push({
-          title: data.results[i].originalTitleText.text,
-          id: data.results[i].id,
-        });
-      }
-      genre != null
-        ? localStorage.setItem(`${genre}`, JSON.stringify(movieList))
-        : localStorage.setItem(`all`, JSON.stringify(movieList));
+  const response = await fetch(url, options);
+  const data = await response.json();
 
-      if (data.next) getMovieList(genre, page + 1);
+  for (var i = 0; i < data.results.length; i++) {
+    movieList.push({
+      title: data.results[i].originalTitleText.text,
+      id: data.results[i].id,
     });
+  }
+
+  genre != null
+    ? localStorage.setItem(`${genre}`, JSON.stringify(movieList))
+    : localStorage.setItem(`all`, JSON.stringify(movieList));
+
+  if (data.next && page < 10) await getMovieList(genre, page + 1);
 }
 
 function generateTwoMovies() {
@@ -122,11 +123,6 @@ function loadMovie(secondMovie) {
     questionEl.innerHTML = `<em>${secondMovie.title}</em> has a higher or lower ${tempGameType} amount than <em>${firstMovie.title}</em>?`;
 
     if (firstMovie.movieData == secondMovie.movieData) createMovieObj(gameType);
-
-    // testing purposes
-    // secondMovie.movieData < firstMovie.movieData
-    //   ? console.log('lower')
-    //   : console.log('higher');
   }
 
   localStorage.setItem('movie-2', JSON.stringify(secondMovie));
@@ -166,7 +162,7 @@ function formatGameType(game) {
   return game;
 }
 
-// goes to gameover screen
+// goes to game over screen
 function gameOver() {
   var url = window.location.href;
   var index = url.indexOf('/gamepage.html');
