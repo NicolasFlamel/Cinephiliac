@@ -36,9 +36,9 @@ function getGenre() {
 
 async function getMovieList(genre, page = 1) {
   var url;
-  genre
-    ? (url = `https://moviesdatabase.p.rapidapi.com/titles?startYear=2000&list=most_pop_movies&page=${page}&genre=${genre}`)
-    : (url = `https://moviesdatabase.p.rapidapi.com/titles?startYear=2000&list=most_pop_movies&page=${page}`);
+  genre == 'all_genres'
+    ? (url = `https://moviesdatabase.p.rapidapi.com/titles?startYear=2000&list=most_pop_movies&page=${page}`)
+    : (url = `https://moviesdatabase.p.rapidapi.com/titles?startYear=2000&list=most_pop_movies&page=${page}&genre=${genre}`);
   const options = {
     method: 'GET',
     headers: {
