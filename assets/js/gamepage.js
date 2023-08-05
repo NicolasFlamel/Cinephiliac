@@ -5,7 +5,6 @@ var gameType;
 var movieList;
 
 async function onLoad() {
-  //somehow grab genre
   score = 0;
   genre = getGenre();
   gameType = getGameType();
