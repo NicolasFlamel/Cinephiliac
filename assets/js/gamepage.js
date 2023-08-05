@@ -5,16 +5,12 @@ var gameType;
 var movieList;
 
 async function onLoad() {
-  //somehow grab genre
-
   score = 0;
   genre = getGenre();
   gameType = getGameType();
   movieList = JSON.parse(localStorage.getItem(`${genre}`)) || [];
 
-  if (movieList.length == 0) {
-    await getMovieList(genre);
-  }
+  if (movieList.length == 0) await getMovieList(genre);
 
   generateTwoMovies();
 }
@@ -38,7 +34,10 @@ function getGenre() {
 }
 
 async function getMovieList(genre, page = 1) {
-  const url = `https://moviesdatabase.p.rapidapi.com/titles?startYear=2000&list=top_rated_english_250&page=${page}`;
+  var url;
+  genre == 'all_genres'
+    ? (url = `https://moviesdatabase.p.rapidapi.com/titles?startYear=2000&list=most_pop_movies&page=${page}`)
+    : (url = `https://moviesdatabase.p.rapidapi.com/titles?startYear=2000&list=most_pop_movies&page=${page}&genre=${genre}`);
   const options = {
     method: 'GET',
     headers: {
@@ -47,28 +46,27 @@ async function getMovieList(genre, page = 1) {
     },
   };
 
-  await fetch(url, options)
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      for (var i = 0; i < data.results.length; i++) {
-        movieList.push({
-          title: data.results[i].originalTitleText.text,
-          id: data.results[i].id,
-        });
-      }
-      genre != null
-        ? localStorage.setItem(`${genre}`, JSON.stringify(movieList))
-        : localStorage.setItem(`all`, JSON.stringify(movieList));
+  const response = await fetch(url, options);
+  const data = await response.json();
 
-      // if (data.next) getMovieList(genre, page + 1);
+  for (var i = 0; i < data.results.length; i++) {
+    movieList.push({
+      title: data.results[i].originalTitleText.text,
+      id: data.results[i].id,
     });
+  }
+
+  genre != null
+    ? localStorage.setItem(`${genre}`, JSON.stringify(movieList))
+    : localStorage.setItem(`all`, JSON.stringify(movieList));
+
+  if (data.next && page < 10) await getMovieList(genre, page + 1);
 }
 
 function generateTwoMovies() {
   createMovieObj();
   createMovieObj();
+  enableButtons();
 }
 
 function createMovieObj() {
@@ -82,7 +80,7 @@ function createMovieObj() {
       movie['movieData'] = data.imdbRating;
       movie['poster'] = data.Poster;
     } else {
-      createMovieObj(gameType);
+      createMovieObj();
       return;
     }
     //render movie
@@ -124,11 +122,6 @@ function loadMovie(secondMovie) {
     questionEl.innerHTML = `<em>${secondMovie.title}</em> has a higher or lower ${tempGameType} amount than <em>${firstMovie.title}</em>?`;
 
     if (firstMovie.movieData == secondMovie.movieData) createMovieObj(gameType);
-
-    // testing purposes
-    // secondMovie.movieData < firstMovie.movieData
-    //   ? console.log('lower')
-    //   : console.log('higher');
   }
 
   localStorage.setItem('movie-2', JSON.stringify(secondMovie));
@@ -168,7 +161,7 @@ function formatGameType(game) {
   return game;
 }
 
-// goes to gameover screen
+// goes to game over screen
 function gameOver() {
   var url = window.location.href;
   var index = url.indexOf('/gamepage.html');
@@ -191,6 +184,12 @@ function goHome(event) {
 
   url = url.slice(0, index) + '/index.html';
   window.location.replace(url);
+}
+
+// enables the higher or lower buttons once movies load at first page load
+function enableButtons() {
+  const disabledBtns = document.querySelectorAll('#higher-lower-btns .button');
+  disabledBtns.forEach((button) => (button.disabled = false));
 }
 
 document.getElementById('back-btn').addEventListener('click', goHome);

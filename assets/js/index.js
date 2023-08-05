@@ -31,3 +31,6 @@ function navigateToScore(event) {
 }
 
 onLoad();
+
+localStorage.removeItem('movie-1');
+localStorage.removeItem('movie-2');
