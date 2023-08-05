@@ -8,17 +8,21 @@
   --title-font: 'Fascinate Inline';
 }
 
-h1 {
-  color: white;
-  font-family: var(--title-font);
-  text-shadow: 3px 3px black;
-  font-size: 50px;
-  text-align: center;
-  padding: 10px;
+body {
+  margin: auto;
+  height: auto;
+  max-width: 1200px;
+  border: #0bd3d3 solid;
 }
 
-h1,
 header {
+  display: grid;
+  grid-template-columns: 1fr repeat(1, auto) 1fr;
+  grid-column-gap: 5px;
+  justify-items: center;
+
+  margin: 5px;
+  padding: 12px 15px 12px 15px;
   background: rgb(11, 11, 11);
   background-image: linear-gradient(
     to right,
@@ -28,11 +32,22 @@ header {
   );
 }
 
-header {
-  display: flex;
-  justify-content: end;
-  padding: 12px 15px 12px 15px;
-  text-align: right;
+h1 {
+  grid-column-start: 2;
+  color: white;
+  font-family: var(--title-font);
+  text-shadow: 3px 3px black;
+  font-size: 50px;
+  text-align: center;
+  padding: 10px;
+}
+
+nav {
+  margin: auto 0 auto auto;
+}
+
+main {
+  margin: 10% 0;
 }
 
 .genre-options,
@@ -71,4 +86,26 @@ section {
   background-position: right center;
   color: #fff;
   text-decoration: none;
+}
+
+@media screen and (max-width: 750px) {
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  nav {
+    margin: 0;
+  }
+  h1 {
+    font-size: 8vw;
+  }
+  body {
+    margin: unset;
+    height: unset;
+  }
+  #box-office-game,
+  #ratings-game {
+    flex-wrap: wrap;
+  }
 }
