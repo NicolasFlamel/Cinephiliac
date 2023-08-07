@@ -33,8 +33,9 @@ header {
   );
 }
 
-nav {
-  margin: auto 0 auto auto;
+header .custom-btn {
+  max-height: 50px;
+  margin: auto;
 }
 
 h1 {
@@ -76,4 +77,20 @@ main {
   background-position: right center;
   color: #fff;
   text-decoration: none;
+}
+
+@media screen and (max-width: 750px) {
+  header {
+    display: flex;
+    margin: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  h1 {
+    font-size: 8vw;
+  }
+  body {
+    margin: unset;
+    height: unset;
+  }
 }

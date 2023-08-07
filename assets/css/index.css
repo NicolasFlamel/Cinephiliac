@@ -10,21 +10,6 @@ section {
 }
 
 @media screen and (max-width: 750px) {
-  header {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  nav {
-    margin: 0;
-  }
-  h1 {
-    font-size: 8vw;
-  }
-  body {
-    margin: unset;
-    height: unset;
-  }
   #box-office-game,
   #ratings-game {
     flex-wrap: wrap;
