@@ -13,7 +13,7 @@ body {
   margin: auto;
   height: auto;
   max-width: 1200px;
-  border: #0bd3d3 solid;
+  border: var(--blue) outset;
 }
 
 header {
@@ -21,8 +21,7 @@ header {
   grid-template-columns: 1fr repeat(1, auto) 1fr;
   grid-column-gap: 5px;
   justify-items: center;
-
-  margin: 5px;
+  border-bottom: var(--blue) outset;
   padding: 12px 15px 12px 15px;
   background: rgb(11, 11, 11);
   background-image: linear-gradient(

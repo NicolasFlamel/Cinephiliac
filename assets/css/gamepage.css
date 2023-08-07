@@ -1,7 +1,6 @@
 main {
   margin: 10px;
   padding: 10px;
-  border: outset var(--blue);
 }
 
 #question {
