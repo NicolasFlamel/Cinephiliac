@@ -1,26 +1,20 @@
-.ui.grid.container {
+#scores {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   margin: 30px;
+  padding: 5px;
   justify-content: space-around;
-  border: outset var(--blue);
-}
-
-table {
-  border-collapse: collapse;
-  margin: 5px;
 }
 
 th,
-td {
+td,
+h2 {
   color: var(--blue);
   text-shadow: 1px 1px black;
 }
 
-tbody > tr {
-  border-bottom: solid var(--pink) 5px;
-}
-
 td {
-  margin: 10px;
   font-size: 20px;
   text-align: center;
 }
