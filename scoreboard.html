@@ -8,21 +8,24 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css"
     />
+    <link rel="stylesheet" href="./assets/css/general.css" />
     <link rel="stylesheet" href="./assets/css/scoreboard.css" />
     <title>Scoreboard</title>
   </head>
   <body>
     <header>
-      <nav>
-        <button type="button" id="back-btn" class="ui button">
-          Return Home
-        </button>
-        <h1>Scoreboard</h1>
-      </nav>
+      <button type="button" id="back-btn" class="custom-btn">
+        Return Home
+      </button>
+      <h1>Scoreboard</h1>
     </header>
     <main>
-      <section class="ui grid container">
-        <table id="box-office-table">
+      <section id="scores" class="ui container">
+        <!-- Box office table -->
+        <table
+          id="box-office-table"
+          class="ui celled striped table collapsing center aligned"
+        >
           <thead>
             <tr>
               <th colspan="3"><h2>💲Box Office💲</h2></th>
@@ -36,7 +39,12 @@
             </tr>
           </tbody>
         </table>
-        <table id="ratings-table">
+        <!-- End of box office table -->
+        <!-- Ratings table -->
+        <table
+          id="ratings-table"
+          class="ui celled striped table collapsing center aligned"
+        >
           <thead>
             <tr>
               <th colspan="3"><h2>⭐Ratings⭐</h2></th>
@@ -50,6 +58,7 @@
             </tr>
           </tbody>
         </table>
+        <!-- End of ratings table -->
       </section>
     </main>
     <script

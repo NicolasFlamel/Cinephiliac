@@ -1,0 +1,95 @@
+/* general css code to share between pages */
+@import 'https://fonts.googleapis.com/css?family=Fascinate+Inline';
+
+:root {
+  --blue: #0bd3d3;
+  --pink: #f890e7;
+  --height-text: 30px;
+  --height-img: 445px;
+  --title-font: 'Fascinate Inline';
+}
+
+body {
+  margin: auto;
+  height: auto;
+  max-width: 1200px;
+  border: var(--blue) outset;
+}
+
+header {
+  display: grid;
+  grid-template-columns: 1fr repeat(1, auto) 1fr;
+  grid-column-gap: 5px;
+  justify-items: center;
+  border-bottom: var(--blue) outset;
+  padding: 12px 15px 12px 15px;
+  background: rgb(11, 11, 11);
+  background-image: linear-gradient(
+    to right,
+    var(--pink) 0%,
+    var(--blue) 51%,
+    var(--pink) 100%
+  );
+}
+
+header .custom-btn {
+  max-height: 50px;
+  margin: auto;
+}
+
+h1 {
+  grid-column-start: 2;
+  color: white;
+  font-family: var(--title-font);
+  text-shadow: 3px 3px black;
+  font-size: 50px;
+  text-align: center;
+  padding: 10px;
+}
+
+main {
+  margin: 10% 0;
+}
+
+/* custom button css */
+.custom-btn {
+  background-image: linear-gradient(
+    to right,
+    var(--pink) 0%,
+    var(--blue) 51%,
+    var(--pink) 100%
+  );
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+  border-color: white;
+}
+
+.custom-btn:hover {
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 750px) {
+  header {
+    display: flex;
+    margin: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  h1 {
+    font-size: 8vw;
+  }
+  body {
+    margin: unset;
+    height: unset;
+  }
+}

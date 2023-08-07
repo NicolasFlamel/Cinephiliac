@@ -8,6 +8,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css"
     />
+    <link rel="stylesheet" href="./assets/css/general.css" />
     <link rel="stylesheet" href="./assets/css/index.css" />
     <link rel="icon" href="./assets/images/favicon.svg" />
     <title>Cinephiliac</title>
@@ -15,17 +16,15 @@
 
   <body>
     <header>
-      <nav>
-        <button type="button" id="scoreboard-btn" class="ui button">
-          Scoreboard
-        </button>
-      </nav>
+      <h1>🎬Cinephiliac🎬</h1>
+      <button type="button" id="scoreboard-btn" class="custom-btn">
+        Scoreboard
+      </button>
     </header>
     <main>
-      <h1>🎬Cinephiliac🎬</h1>
       <section>
         <section id="box-office-game">
-          <button type="button" class="ui button game-btn" value="box_office">
+          <button type="button" class="game-btn custom-btn" value="box_office">
             Box Office
           </button>
           <select name="genres" id="bo-genre" class="ui selection dropdown">
@@ -43,7 +42,7 @@
         </section>
       </section>
       <section id="ratings-game">
-        <button type="button" class="ui button game-btn" value="rating">
+        <button type="button" class="game-btn custom-btn" value="rating">
           Ratings
         </button>
         <select
