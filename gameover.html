@@ -8,21 +8,18 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css"
     />
+    <link rel="stylesheet" href="./assets/css/general.css" />
     <link rel="stylesheet" href="./assets/css/gameover.css" />
     <title>Game Over 😭</title>
   </head>
 
   <body>
     <header>
-      <nav>
-        <button type="button" id="back-btn" class="ui button">
-          Return Home
-        </button>
-        <h1>Game Over</h1>
-        <button type="button" id="scoreboard-btn" class="ui button">
-          Scoreboard
-        </button>
-      </nav>
+      <button type="button" id="back-btn" class="custom-btn">Return Home</button>
+      <h1>Game Over</h1>
+      <button type="button" id="scoreboard-btn" class="custom-btn">
+        Scoreboard
+      </button>
     </header>
     <main>
       <section id="score" class="ui warning message">
@@ -36,10 +33,9 @@
         <h2>Enter Player Name:</h2>
         <div class="ui input">
           <input type="text" placeholder="Name" />
-          <button class="ui button" id="save-btn" type="button">Save</button>
+          <button class="custom-btn" id="save-btn" type="button">Save</button>
         </div>
       </section>
-      <div class="ui divider"></div>
     </main>
     <script
       src="https://code.jquery.com/jquery-3.1.1.min.js"
