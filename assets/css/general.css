@@ -19,15 +19,11 @@ body {
 
 header {
   display: grid;
-  grid-template-columns: 1fr repeat(1, auto) 1fr;
-  grid-column-gap: 5px;
   justify-items: center;
+  align-items: center;
   background-color: var(--primary-color);
-}
-
-header .custom-btn {
-  max-height: 50px;
-  margin: auto;
+  grid-column-gap: 5px;
+  grid-template-columns: 1fr repeat(1, auto) 1fr;
 }
 
 h1 {
