@@ -2,7 +2,7 @@ h2,
 h3,
 #score {
   text-align: center;
-  color: var(--primary-color)
+  color: var(--primary-color);
 }
 
 #score,
