@@ -15,7 +15,6 @@ body {
   margin: auto;
   height: auto;
   background-color: var(--secondary-color);
-  /* border: var(--primary-color) outset; */
 }
 
 header {
@@ -56,6 +55,7 @@ main {
   text-transform: uppercase;
   color: white;
   background-color: var(--intermediate-color);
+  border: 2px outset black;
   border-radius: 10px;
   white-space: nowrap;
   font: var(--button-font);
@@ -63,7 +63,15 @@ main {
 
 .custom-btn:hover {
   cursor: pointer;
+  color: var(--secondary-color);
   border-color: var(--primary-color);
+}
+
+a.custom-btn {
+  /* make anchor look like buttons */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media screen and (max-width: 750px) {

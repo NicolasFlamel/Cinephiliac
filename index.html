@@ -17,20 +17,17 @@
   <body>
     <header>
       <h1>🎬Cinephiliac🎬</h1>
-      <button type="button" id="scoreboard-btn" class="custom-btn">
+      <a href="./scoreboard.html" id="scoreboard-btn" class="custom-btn">
         Scoreboard
-      </button>
+      </a>
     </header>
     <main>
-      <section id="box-office-game">
-        <button type="button" class="game-btn custom-btn" value="box_office">
-          Box Office Start
-        </button>
-        <select
-          name="genres"
-          id="bo-genre"
-          class="ui button selection dropdown"
-        >
+      <form action="/gamepage.html" name="start-game" id="game-form">
+        <select name="game" class="ui button selection dropdown">
+          <option value="box_office">Box OFfice Mode</option>
+          <option value="rating">Ratings Mode</option>
+        </select>
+        <select name="genre" id="bo-genre" class="ui button selection dropdown">
           <option value="all_genres">All Genre</option>
           <option value="Action">Action</option>
           <option value="Animation">Animation</option>
@@ -42,28 +39,8 @@
           <option value="Sci-Fi">Sci-Fi</option>
           <option value="Thriller">Thriller</option>
         </select>
-      </section>
-      <section id="ratings-game">
-        <button type="button" class="game-btn custom-btn" value="rating">
-          Ratings Start
-        </button>
-        <select
-          name="genres"
-          id="ratings-genre"
-          class="ui selection dropdown genre-options"
-        >
-          <option value="all_genres">All Genre</option>
-          <option value="Action">Action</option>
-          <option value="Animation">Animation</option>
-          <option value="Comedy">Comedy</option>
-          <option value="Crime">Crime</option>
-          <option value="Family">Family</option>
-          <option value="Horror">Horror</option>
-          <option value="Romance">Romance</option>
-          <option value="Sci-Fi">Sci-Fi</option>
-          <option value="Thriller">Thriller</option>
-        </select>
-      </section>
+        <button type="submit" class="custom-btn">Start</button>
+      </form>
     </main>
     <script
       src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -71,6 +48,8 @@
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
-    <script src="./assets/js/index.js"></script>
+    <script>
+      $('.ui.dropdown').dropdown();
+    </script>
   </body>
 </html>
