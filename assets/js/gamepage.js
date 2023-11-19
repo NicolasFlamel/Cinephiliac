@@ -1,17 +1,14 @@
 // grab filter options
-var genre;
-var score;
-var gameType;
-var movieList;
+var score = 0;
+var genre = getGenre();
+var gameType = getGameType();
+var movieList = JSON.parse(localStorage.getItem(`${genre}`)) || [];
 
-async function onLoad() {
-  score = 0;
-  genre = getGenre();
-  gameType = getGameType();
-  movieList = JSON.parse(localStorage.getItem(`${genre}`)) || [];
+localStorage.removeItem('movie-1');
+localStorage.removeItem('movie-2');
 
+async function startGame() {
   if (movieList.length == 0) await getMovieList(genre);
-
   generateTwoMovies();
 }
 
@@ -197,4 +194,4 @@ document
   .getElementById('higher-lower-btns')
   .addEventListener('click', compareAnswers);
 
-onLoad();
+startGame();

@@ -1,10 +1,29 @@
-.genre-options,
-.decade-options {
-  max-width: 500px;
+.ui.selection.dropdown {
+  width: 100%;
+  height: 50px;
+  max-width: 200px;
+  background-color: var(--intermediate-color);
+  color: white;
+  border: 2px outset black;
+  border-radius: 10px;
+  margin: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  font: var(--button-font);
 }
 
-section {
+.ui.selection.dropdown > .text {
+  position: relative;
+  top: 20%;
+}
+
+.ui.selection.dropdown:hover {
+  border-color: var(--primary-color);
+}
+
+#game-form {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
